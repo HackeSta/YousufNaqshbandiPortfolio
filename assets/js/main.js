@@ -101,6 +101,24 @@ var main = function() {
 		init();
 }; 
 var loadData = function(userid){
+	$("#footer").load("/footer.html");
+	$("#nav").load("/navbar.html", function(){
+		$path = window.location.pathname;
+		switch ($path) {
+			case "/index.html":
+				$("#indexicon").addClass("active");
+				break;
+			case "/about.html":
+				$("#abouticon").addClass("active");
+				break;
+			case "/gallery.html":
+				$("#galleryicon").addClass("active");
+				break;
+			default:
+				
+		}	
+	});
+	
 	$.ajax({
 		url: 'http://hackesta.pythonanywhere.com/photographs/user?format=json&user_id=' + userid,
 		type: 'GET',
