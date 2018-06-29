@@ -118,24 +118,15 @@ var loadData = function(userid){
 
 		}
 	});
+	$("#fullname").append("Yousuf Naqshbandi");
+	if(!$gallery)
+	{
+		$("#userphoto").attr('src', "https://hackesta.org/assets/media/websites/yousufnaqshbandi.jpg");
+	}
+	//$("#affection").append($user.affection);
+	//$("#picture_count").append($user.photos_count);
+	loadPhotos(userid);
 
-	$.ajax({
-		url: 'http://hackesta.pythonanywhere.com/photographs/user?format=json&user_id=' + userid,
-		type: 'GET',
-		crossDomain: true,
-		dataType: 'json',
-		success: function(json) {
-				$user = json.user;
-				$("#fullname").append("Yousuf Naqshbandi");
-				if(!$gallery)
-				{
-					$("#userphoto").attr('src', "https://hackesta.org/assets/media/websites/yousufnaqshbandi.jpg");
-				}
-				//$("#affection").append($user.affection);
-				//$("#picture_count").append($user.photos_count);
-				loadPhotos(userid);
-			}
-	});
 };
 var loadPhotos = function(userid){
 	$.ajax({
