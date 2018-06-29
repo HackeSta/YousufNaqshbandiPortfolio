@@ -129,7 +129,7 @@ var loadData = function(userid){
 				$("#fullname").append("Yousuf Naqshbandi");
 				if(!$gallery)
 				{
-					$("#userphoto").attr('src', "https://hackesta.org/assets/media/yousufnaqshbandi.jpg");
+					$("#userphoto").attr('src', "https://hackesta.org/assets/media/websites/yousufnaqshbandi.jpg");
 				}
 				//$("#affection").append($user.affection);
 				//$("#picture_count").append($user.photos_count);
