@@ -18,9 +18,9 @@ var main = function() {
 
 		// Disable animations/transitions until the page has loaded.
 			// $body.addClass('is-loading');
-			// 
+			//
 			// $window.on('load', function() {
-			// 	
+			//
 			// 	window.setTimeout(function() {
 			// 		$body.removeClass('is-loading');
 			// 	}, 100);
@@ -99,7 +99,7 @@ var main = function() {
 
 	};
 		init();
-}; 
+};
 var loadData = function(userid){
 	$("#footer").load("/footer.html");
 	$("#nav").load("/navbar.html", function(){
@@ -115,10 +115,10 @@ var loadData = function(userid){
 				$("#galleryicon").addClass("active");
 				break;
 			default:
-				
-		}	
+
+		}
 	});
-	
+
 	$.ajax({
 		url: 'http://hackesta.pythonanywhere.com/photographs/user?format=json&user_id=' + userid,
 		type: 'GET',
@@ -126,11 +126,10 @@ var loadData = function(userid){
 		dataType: 'json',
 		success: function(json) {
 				$user = json.user;
-				$("#fullname").append($user.fullname);
+				$("#fullname").append("Yousuf Naqshbandi");
 				if(!$gallery)
 				{
-					$("#userphoto").attr('src', $user.userpic_url);
-					$("#banner").css('background-image', 'url('+$user.cover_url+')');
+					$("#userphoto").attr('src', "https://hackesta.org/assets/media/yousufnaqshbandi.jpg");
 				}
 				//$("#affection").append($user.affection);
 				//$("#picture_count").append($user.photos_count);
@@ -140,21 +139,21 @@ var loadData = function(userid){
 };
 var loadPhotos = function(userid){
 	$.ajax({
-		url: 'http://hackesta.pythonanywhere.com/photographs/?format=json&user_id=' + userid,
+		url: '/data/fpx_photographs.json',
 		type: 'GET',
 		crossDomain: true,
 		dataType: 'json',
 		success: function(json) {
 			$count = 8;
 			if($gallery){
-				$count = json.photos.length;
+				$count = json.length;
 			}
 			for (var i = 0; i < $count;) {
-				$this = json.photos[i];
-				$(".content").append('<div class="media"><a href="'+$this.images[1].url+'"><img src="'+$this.images[0].url+'" alt="" title="'+$this.name+'" /></a></div>');
+				$this = json[i];
+				$(".content").append('<div class="media"><a href="'+$this.url+'"><img src="'+$this.thumbnail+'" alt="" title="'+$this.title+'" /></a></div>');
 				i=i+1;
    }
-			
+
 			main();
 		}
 	});
@@ -178,9 +177,9 @@ var getUrlParameter = function getUrlParameter(sParam) {
 var getPageName = function getPageName() {
     var index = window.location.href.lastIndexOf("/") + 1,
         filenameWithExtension = window.location.href.substr(index),
-        filename = filenameWithExtension.split(".")[0];  
+        filename = filenameWithExtension.split(".")[0];
 
-    return filename;                                     
+    return filename;
 };
 
 
